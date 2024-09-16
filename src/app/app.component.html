@@ -1,0 +1,35 @@
+<div class="mainArea">
+  <div class="container mx-auto">
+    <div class="flex justify-center min-h-[15vh]">
+      <div class="w-1/2 border-2 border-gray-300 rounded-lg shadow-lg bg-white">
+        <h1 class="text-2xl text-gray-800 font-semibold text-center p-4">Harf Eşleştirme</h1>
+        <div class="p-4">
+          <p class="text-center grid-cols-12">
+            <span [class]="compare(letter, enteredText[i])" *ngFor="let letter of randomText.split(''); let i = index" class="text-lg">{{ letter }}</span>
+          </p>
+          <div class="mt-4">
+            <input 
+              class="w-full border-2 border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-gray-400 transition" 
+              (input)="getInputValue($event.target.value)"
+              (keydown.enter)="checkInput()" 
+            />
+          </div>
+          <div class="text-center mt-4 transition-opacity opacity-0 ease-in-out duration-1000" [ngClass]="{'opacity-100': transitionVisible===true }">
+            <h1 *ngIf="messageVisible" 
+                class="text-2xl font-bold pb-1" 
+                [ngClass]="{'text-green-500': isCorrect, 'text-red-500': !isCorrect}">
+              {{ isCorrect ? 'Bravo!' : 'Tekrar Deneyiniz!' }}
+            </h1>
+          </div>
+          <div class="text-center mt-4">
+            <button 
+              class="bg-gradient-to-r from-purple-400 to-purple-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg hover:shadow-xl transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              (click)="checkInput()">
+              Kontrol Et
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
